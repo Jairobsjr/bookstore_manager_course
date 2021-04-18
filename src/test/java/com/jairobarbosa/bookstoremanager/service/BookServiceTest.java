@@ -2,6 +2,7 @@ package com.jairobarbosa.bookstoremanager.service;
 
 import com.jairobarbosa.bookstoremanager.dto.BookDTO;
 import com.jairobarbosa.bookstoremanager.entity.Book;
+import com.jairobarbosa.bookstoremanager.exception.BookNotFoundException;
 import com.jairobarbosa.bookstoremanager.repository.BookRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ public class BookServiceTest {
     private BookService bookService;
 
     @Test
-    void whenGivenExistingIdThenReturnThisBook() {
+    void whenGivenExistingIdThenReturnThisBook() throws BookNotFoundException {
         Book expectedFoundBook = createFakeBook();
 
         when(bookRepository.findById(expectedFoundBook.getId())).thenReturn(Optional.of(expectedFoundBook));
